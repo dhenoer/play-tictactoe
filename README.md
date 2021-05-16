@@ -15,7 +15,7 @@ Aplikasi Python ini merupakan permainan Tic-Tac-Toe yang sangat popular. Pemain 
 
 ## Video
 
-![Video di Youtube](https://www.youtube.com/watch?v=g6DOW_CXc4c)
+[![Video di Youtube](https://img.youtube.com/vi/g6DOW_CXc4c/0.jpg)](https://www.youtube.com/watch?v=g6DOW_CXc4c)
 
 ## Algoritma
 
