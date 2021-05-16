@@ -1,0 +1,1446 @@
+Help on module PIL.Image in PIL:
+
+NNAAMMEE
+    PIL.Image
+
+DDEESSCCRRIIPPTTIIOONN
+    # The Python Imaging Library.
+    # $Id$
+    #
+    # the Image class wrapper
+    #
+    # partial release history:
+    # 1995-09-09 fl   Created
+    # 1996-03-11 fl   PIL release 0.0 (proof of concept)
+    # 1996-04-30 fl   PIL release 0.1b1
+    # 1999-07-28 fl   PIL release 1.0 final
+    # 2000-06-07 fl   PIL release 1.1
+    # 2000-10-20 fl   PIL release 1.1.1
+    # 2001-05-07 fl   PIL release 1.1.2
+    # 2002-03-15 fl   PIL release 1.1.3
+    # 2003-05-10 fl   PIL release 1.1.4
+    # 2005-03-28 fl   PIL release 1.1.5
+    # 2006-12-02 fl   PIL release 1.1.6
+    # 2009-11-15 fl   PIL release 1.1.7
+    #
+    # Copyright (c) 1997-2009 by Secret Labs AB.  All rights reserved.
+    # Copyright (c) 1995-2009 by Fredrik Lundh.
+    #
+    # See the README file for information on usage and redistribution.
+    #
+
+CCLLAASSSSEESS
+    builtins.Exception(builtins.BaseException)
+        DecompressionBombError
+    builtins.RuntimeWarning(builtins.Warning)
+        DecompressionBombWarning
+    builtins.object
+        Image
+        ImagePointHandler
+        ImageTransformHandler
+    collections.abc.MutableMapping(collections.abc.Mapping)
+        Exif
+    
+    class DDeeccoommpprreessssiioonnBBoommbbEErrrroorr(builtins.Exception)
+     |  Common base class for all non-exit exceptions.
+     |  
+     |  Method resolution order:
+     |      DecompressionBombError
+     |      builtins.Exception
+     |      builtins.BaseException
+     |      builtins.object
+     |  
+     |  Data descriptors defined here:
+     |  
+     |  ____wweeaakkrreeff____
+     |      list of weak references to the object (if defined)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from builtins.Exception:
+     |  
+     |  ____iinniitt____(self, /, *args, **kwargs)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Static methods inherited from builtins.Exception:
+     |  
+     |  ____nneeww____(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from builtins.BaseException:
+     |  
+     |  ____ddeellaattttrr____(self, name, /)
+     |      Implement delattr(self, name).
+     |  
+     |  ____ggeettaattttrriibbuuttee____(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  ____rreedduuccee____(...)
+     |      Helper for pickle.
+     |  
+     |  ____rreepprr____(self, /)
+     |      Return repr(self).
+     |  
+     |  ____sseettaattttrr____(self, name, value, /)
+     |      Implement setattr(self, name, value).
+     |  
+     |  ____sseettssttaattee____(...)
+     |  
+     |  ____ssttrr____(self, /)
+     |      Return str(self).
+     |  
+     |  wwiitthh__ttrraacceebbaacckk(...)
+     |      Exception.with_traceback(tb) --
+     |      set self.__traceback__ to tb and return self.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from builtins.BaseException:
+     |  
+     |  ____ccaauussee____
+     |      exception cause
+     |  
+     |  ____ccoonntteexxtt____
+     |      exception context
+     |  
+     |  ____ddiicctt____
+     |  
+     |  ____ssuupppprreessss__ccoonntteexxtt____
+     |  
+     |  ____ttrraacceebbaacckk____
+     |  
+     |  aarrggss
+    
+    class DDeeccoommpprreessssiioonnBBoommbbWWaarrnniinngg(builtins.RuntimeWarning)
+     |  Base class for warnings about dubious runtime behavior.
+     |  
+     |  Method resolution order:
+     |      DecompressionBombWarning
+     |      builtins.RuntimeWarning
+     |      builtins.Warning
+     |      builtins.Exception
+     |      builtins.BaseException
+     |      builtins.object
+     |  
+     |  Data descriptors defined here:
+     |  
+     |  ____wweeaakkrreeff____
+     |      list of weak references to the object (if defined)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from builtins.RuntimeWarning:
+     |  
+     |  ____iinniitt____(self, /, *args, **kwargs)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Static methods inherited from builtins.RuntimeWarning:
+     |  
+     |  ____nneeww____(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from builtins.BaseException:
+     |  
+     |  ____ddeellaattttrr____(self, name, /)
+     |      Implement delattr(self, name).
+     |  
+     |  ____ggeettaattttrriibbuuttee____(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  ____rreedduuccee____(...)
+     |      Helper for pickle.
+     |  
+     |  ____rreepprr____(self, /)
+     |      Return repr(self).
+     |  
+     |  ____sseettaattttrr____(self, name, value, /)
+     |      Implement setattr(self, name, value).
+     |  
+     |  ____sseettssttaattee____(...)
+     |  
+     |  ____ssttrr____(self, /)
+     |      Return str(self).
+     |  
+     |  wwiitthh__ttrraacceebbaacckk(...)
+     |      Exception.with_traceback(tb) --
+     |      set self.__traceback__ to tb and return self.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from builtins.BaseException:
+     |  
+     |  ____ccaauussee____
+     |      exception cause
+     |  
+     |  ____ccoonntteexxtt____
+     |      exception context
+     |  
+     |  ____ddiicctt____
+     |  
+     |  ____ssuupppprreessss__ccoonntteexxtt____
+     |  
+     |  ____ttrraacceebbaacckk____
+     |  
+     |  aarrggss
+    
+    class EExxiiff(collections.abc.MutableMapping)
+     |  Method resolution order:
+     |      Exif
+     |      collections.abc.MutableMapping
+     |      collections.abc.Mapping
+     |      collections.abc.Collection
+     |      collections.abc.Sized
+     |      collections.abc.Iterable
+     |      collections.abc.Container
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  ____ccoonnttaaiinnss____(self, tag)
+     |  
+     |  ____ddeelliitteemm____(self, tag)
+     |  
+     |  ____ggeettiitteemm____(self, tag)
+     |  
+     |  ____iinniitt____(self)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  ____iitteerr____(self)
+     |  
+     |  ____lleenn____(self)
+     |  
+     |  ____sseettiitteemm____(self, tag, value)
+     |  
+     |  ____ssttrr____(self)
+     |      Return str(self).
+     |  
+     |  ggeett__iiffdd(self, tag)
+     |  
+     |  llooaadd(self, data)
+     |  
+     |  ttoobbyytteess(self, offset=8)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  ____ddiicctt____
+     |      dictionary for instance variables (if defined)
+     |  
+     |  ____wweeaakkrreeff____
+     |      list of weak references to the object (if defined)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  ____aabbssttrraaccttmmeetthhooddss____ = frozenset()
+     |  
+     |  eennddiiaann = '<'
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from collections.abc.MutableMapping:
+     |  
+     |  cclleeaarr(self)
+     |      D.clear() -> None.  Remove all items from D.
+     |  
+     |  ppoopp(self, key, default=<object object at 0x7ff8106aa150>)
+     |      D.pop(k[,d]) -> v, remove specified key and return the corresponding value.
+     |      If key is not found, d is returned if given, otherwise KeyError is raised.
+     |  
+     |  ppooppiitteemm(self)
+     |      D.popitem() -> (k, v), remove and return some (key, value) pair
+     |      as a 2-tuple; but raise KeyError if D is empty.
+     |  
+     |  sseettddeeffaauulltt(self, key, default=None)
+     |      D.setdefault(k[,d]) -> D.get(k,d), also set D[k]=d if k not in D
+     |  
+     |  uuppddaattee(self, other=(), /, **kwds)
+     |      D.update([E, ]**F) -> None.  Update D from mapping/iterable E and F.
+     |      If E present and has a .keys() method, does:     for k in E: D[k] = E[k]
+     |      If E present and lacks .keys() method, does:     for (k, v) in E: D[k] = v
+     |      In either case, this is followed by: for k, v in F.items(): D[k] = v
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from collections.abc.Mapping:
+     |  
+     |  ____eeqq____(self, other)
+     |      Return self==value.
+     |  
+     |  ggeett(self, key, default=None)
+     |      D.get(k[,d]) -> D[k] if k in D, else d.  d defaults to None.
+     |  
+     |  iitteemmss(self)
+     |      D.items() -> a set-like object providing a view on D's items
+     |  
+     |  kkeeyyss(self)
+     |      D.keys() -> a set-like object providing a view on D's keys
+     |  
+     |  vvaalluueess(self)
+     |      D.values() -> an object providing a view on D's values
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from collections.abc.Mapping:
+     |  
+     |  ____hhaasshh____ = None
+     |  
+     |  ____rreevveerrsseedd____ = None
+     |  
+     |  ----------------------------------------------------------------------
+     |  Class methods inherited from collections.abc.Collection:
+     |  
+     |  ____ssuubbccllaasssshhooookk____(C) from abc.ABCMeta
+     |      Abstract classes can override this to customize issubclass().
+     |      
+     |      This is invoked early on by abc.ABCMeta.__subclasscheck__().
+     |      It should return True, False or NotImplemented.  If it returns
+     |      NotImplemented, the normal algorithm is used.  Otherwise, it
+     |      overrides the normal algorithm (and the outcome is cached).
+    
+    class IImmaaggee(builtins.object)
+     |  This class represents an image object.  To create
+     |  :py:class:`~PIL.Image.Image` objects, use the appropriate factory
+     |  functions.  There's hardly ever any reason to call the Image constructor
+     |  directly.
+     |  
+     |  * :py:func:`~PIL.Image.open`
+     |  * :py:func:`~PIL.Image.new`
+     |  * :py:func:`~PIL.Image.frombytes`
+     |  
+     |  Methods defined here:
+     |  
+     |  ____ccooppyy____ = copy(self)
+     |  
+     |  ____eenntteerr____(self)
+     |      # Context manager support
+     |  
+     |  ____eeqq____(self, other)
+     |      Return self==value.
+     |  
+     |  ____eexxiitt____(self, *args)
+     |  
+     |  ____ggeettssttaattee____(self)
+     |  
+     |  ____iinniitt____(self)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  ____rreepprr____(self)
+     |      Return repr(self).
+     |  
+     |  ____sseettssttaattee____(self, state)
+     |  
+     |  aallpphhaa__ccoommppoossiittee(self, im, dest=(0, 0), source=(0, 0))
+     |      'In-place' analog of Image.alpha_composite. Composites an image
+     |      onto this image.
+     |      
+     |      :param im: image to composite over this one
+     |      :param dest: Optional 2 tuple (left, top) specifying the upper
+     |        left corner in this (destination) image.
+     |      :param source: Optional 2 (left, top) tuple for the upper left
+     |        corner in the overlay source image, or 4 tuple (left, top, right,
+     |        bottom) for the bounds of the source rectangle
+     |      
+     |      Performance Note: Not currently implemented in-place in the core layer.
+     |  
+     |  cclloossee(self)
+     |      Closes the file pointer, if possible.
+     |      
+     |      This operation will destroy the image core and release its memory.
+     |      The image data will be unusable afterward.
+     |      
+     |      This function is only required to close images that have not
+     |      had their file read and closed by the
+     |      :py:meth:`~PIL.Image.Image.load` method. See
+     |      :ref:`file-handling` for more information.
+     |  
+     |  ccoonnvveerrtt(self, mode=None, matrix=None, dither=None, palette=0, colors=256)
+     |      Returns a converted copy of this image. For the "P" mode, this
+     |      method translates pixels through the palette.  If mode is
+     |      omitted, a mode is chosen so that all information in the image
+     |      and the palette can be represented without a palette.
+     |      
+     |      The current version supports all possible conversions between
+     |      "L", "RGB" and "CMYK." The ``matrix`` argument only supports "L"
+     |      and "RGB".
+     |      
+     |      When translating a color image to greyscale (mode "L"),
+     |      the library uses the ITU-R 601-2 luma transform::
+     |      
+     |          L = R * 299/1000 + G * 587/1000 + B * 114/1000
+     |      
+     |      The default method of converting a greyscale ("L") or "RGB"
+     |      image into a bilevel (mode "1") image uses Floyd-Steinberg
+     |      dither to approximate the original image luminosity levels. If
+     |      dither is :data:`NONE`, all values larger than 128 are set to 255 (white),
+     |      all other values to 0 (black). To use other thresholds, use the
+     |      :py:meth:`~PIL.Image.Image.point` method.
+     |      
+     |      When converting from "RGBA" to "P" without a ``matrix`` argument,
+     |      this passes the operation to :py:meth:`~PIL.Image.Image.quantize`,
+     |      and ``dither`` and ``palette`` are ignored.
+     |      
+     |      :param mode: The requested mode. See: :ref:`concept-modes`.
+     |      :param matrix: An optional conversion matrix.  If given, this
+     |         should be 4- or 12-tuple containing floating point values.
+     |      :param dither: Dithering method, used when converting from
+     |         mode "RGB" to "P" or from "RGB" or "L" to "1".
+     |         Available methods are :data:`NONE` or :data:`FLOYDSTEINBERG` (default).
+     |         Note that this is not used when ``matrix`` is supplied.
+     |      :param palette: Palette to use when converting from mode "RGB"
+     |         to "P".  Available palettes are :data:`WEB` or :data:`ADAPTIVE`.
+     |      :param colors: Number of colors to use for the :data:`ADAPTIVE` palette.
+     |         Defaults to 256.
+     |      :rtype: :py:class:`~PIL.Image.Image`
+     |      :returns: An :py:class:`~PIL.Image.Image` object.
+     |  
+     |  ccooppyy(self)
+     |      Copies this image. Use this method if you wish to paste things
+     |      into an image, but still retain the original.
+     |      
+     |      :rtype: :py:class:`~PIL.Image.Image`
+     |      :returns: An :py:class:`~PIL.Image.Image` object.
+     |  
+     |  ccrroopp(self, box=None)
+     |      Returns a rectangular region from this image. The box is a
+     |      4-tuple defining the left, upper, right, and lower pixel
+     |      coordinate. See :ref:`coordinate-system`.
+     |      
+     |      Note: Prior to Pillow 3.4.0, this was a lazy operation.
+     |      
+     |      :param box: The crop rectangle, as a (left, upper, right, lower)-tuple.
+     |      :rtype: :py:class:`~PIL.Image.Image`
+     |      :returns: An :py:class:`~PIL.Image.Image` object.
+     |  
+     |  ddrraafftt(self, mode, size)
+     |      Configures the image file loader so it returns a version of the
+     |      image that as closely as possible matches the given mode and
+     |      size. For example, you can use this method to convert a color
+     |      JPEG to greyscale while loading it.
+     |      
+     |      If any changes are made, returns a tuple with the chosen ``mode`` and
+     |      ``box`` with coordinates of the original image within the altered one.
+     |      
+     |      Note that this method modifies the :py:class:`~PIL.Image.Image` object
+     |      in place. If the image has already been loaded, this method has no
+     |      effect.
+     |      
+     |      Note: This method is not implemented for most images. It is
+     |      currently implemented only for JPEG and MPO images.
+     |      
+     |      :param mode: The requested mode.
+     |      :param size: The requested size.
+     |  
+     |  eeffffeecctt__sspprreeaadd(self, distance)
+     |      Randomly spread pixels in an image.
+     |      
+     |      :param distance: Distance to spread pixels.
+     |  
+     |  eennttrrooppyy(self, mask=None, extrema=None)
+     |      Calculates and returns the entropy for the image.
+     |      
+     |      A bilevel image (mode "1") is treated as a greyscale ("L")
+     |      image by this method.
+     |      
+     |      If a mask is provided, the method employs the histogram for
+     |      those parts of the image where the mask image is non-zero.
+     |      The mask image must have the same size as the image, and be
+     |      either a bi-level image (mode "1") or a greyscale image ("L").
+     |      
+     |      :param mask: An optional mask.
+     |      :param extrema: An optional tuple of manually-specified extrema.
+     |      :returns: A float value representing the image entropy
+     |  
+     |  ffiilltteerr(self, filter)
+     |      Filters this image using the given filter.  For a list of
+     |      available filters, see the :py:mod:`~PIL.ImageFilter` module.
+     |      
+     |      :param filter: Filter kernel.
+     |      :returns: An :py:class:`~PIL.Image.Image` object.
+     |  
+     |  ffrroommbbyytteess(self, data, decoder_name='raw', *args)
+     |      Loads this image with pixel data from a bytes object.
+     |      
+     |      This method is similar to the :py:func:`~PIL.Image.frombytes` function,
+     |      but loads data into this image instead of creating a new image object.
+     |  
+     |  ggeettbbaannddss(self)
+     |      Returns a tuple containing the name of each band in this image.
+     |      For example, ``getbands`` on an RGB image returns ("R", "G", "B").
+     |      
+     |      :returns: A tuple containing band names.
+     |      :rtype: tuple
+     |  
+     |  ggeettbbbbooxx(self)
+     |      Calculates the bounding box of the non-zero regions in the
+     |      image.
+     |      
+     |      :returns: The bounding box is returned as a 4-tuple defining the
+     |         left, upper, right, and lower pixel coordinate. See
+     |         :ref:`coordinate-system`. If the image is completely empty, this
+     |         method returns None.
+     |  
+     |  ggeettcchhaannnneell(self, channel)
+     |      Returns an image containing a single channel of the source image.
+     |      
+     |      :param channel: What channel to return. Could be index
+     |        (0 for "R" channel of "RGB") or channel name
+     |        ("A" for alpha channel of "RGBA").
+     |      :returns: An image in "L" mode.
+     |      
+     |      .. versionadded:: 4.3.0
+     |  
+     |  ggeettccoolloorrss(self, maxcolors=256)
+     |      Returns a list of colors used in this image.
+     |      
+     |      :param maxcolors: Maximum number of colors.  If this number is
+     |         exceeded, this method returns None.  The default limit is
+     |         256 colors.
+     |      :returns: An unsorted list of (count, pixel) values.
+     |  
+     |  ggeettddaattaa(self, band=None)
+     |      Returns the contents of this image as a sequence object
+     |      containing pixel values.  The sequence object is flattened, so
+     |      that values for line one follow directly after the values of
+     |      line zero, and so on.
+     |      
+     |      Note that the sequence object returned by this method is an
+     |      internal PIL data type, which only supports certain sequence
+     |      operations.  To convert it to an ordinary sequence (e.g. for
+     |      printing), use ``list(im.getdata())``.
+     |      
+     |      :param band: What band to return.  The default is to return
+     |         all bands.  To return a single band, pass in the index
+     |         value (e.g. 0 to get the "R" band from an "RGB" image).
+     |      :returns: A sequence-like object.
+     |  
+     |  ggeetteexxiiff(self)
+     |  
+     |  ggeetteexxttrreemmaa(self)
+     |      Gets the the minimum and maximum pixel values for each band in
+     |      the image.
+     |      
+     |      :returns: For a single-band image, a 2-tuple containing the
+     |         minimum and maximum pixel value.  For a multi-band image,
+     |         a tuple containing one 2-tuple for each band.
+     |  
+     |  ggeettiimm(self)
+     |      Returns a capsule that points to the internal image memory.
+     |      
+     |      :returns: A capsule object.
+     |  
+     |  ggeettppaalleettttee(self)
+     |      Returns the image palette as a list.
+     |      
+     |      :returns: A list of color values [r, g, b, ...], or None if the
+     |         image has no palette.
+     |  
+     |  ggeettppiixxeell(self, xy)
+     |      Returns the pixel value at a given position.
+     |      
+     |      :param xy: The coordinate, given as (x, y). See
+     |         :ref:`coordinate-system`.
+     |      :returns: The pixel value.  If the image is a multi-layer image,
+     |         this method returns a tuple.
+     |  
+     |  ggeettpprroojjeeccttiioonn(self)
+     |      Get projection to x and y axes
+     |      
+     |      :returns: Two sequences, indicating where there are non-zero
+     |          pixels along the X-axis and the Y-axis, respectively.
+     |  
+     |  hhiissttooggrraamm(self, mask=None, extrema=None)
+     |      Returns a histogram for the image. The histogram is returned as
+     |      a list of pixel counts, one for each pixel value in the source
+     |      image. If the image has more than one band, the histograms for
+     |      all bands are concatenated (for example, the histogram for an
+     |      "RGB" image contains 768 values).
+     |      
+     |      A bilevel image (mode "1") is treated as a greyscale ("L") image
+     |      by this method.
+     |      
+     |      If a mask is provided, the method returns a histogram for those
+     |      parts of the image where the mask image is non-zero. The mask
+     |      image must have the same size as the image, and be either a
+     |      bi-level image (mode "1") or a greyscale image ("L").
+     |      
+     |      :param mask: An optional mask.
+     |      :param extrema: An optional tuple of manually-specified extrema.
+     |      :returns: A list containing pixel counts.
+     |  
+     |  llooaadd(self)
+     |      Allocates storage for the image and loads the pixel data.  In
+     |      normal cases, you don't need to call this method, since the
+     |      Image class automatically loads an opened image when it is
+     |      accessed for the first time.
+     |      
+     |      If the file associated with the image was opened by Pillow, then this
+     |      method will close it. The exception to this is if the image has
+     |      multiple frames, in which case the file will be left open for seek
+     |      operations. See :ref:`file-handling` for more information.
+     |      
+     |      :returns: An image access object.
+     |      :rtype: :ref:`PixelAccess` or :py:class:`PIL.PyAccess`
+     |  
+     |  ppaassttee(self, im, box=None, mask=None)
+     |      Pastes another image into this image. The box argument is either
+     |      a 2-tuple giving the upper left corner, a 4-tuple defining the
+     |      left, upper, right, and lower pixel coordinate, or None (same as
+     |      (0, 0)). See :ref:`coordinate-system`. If a 4-tuple is given, the size
+     |      of the pasted image must match the size of the region.
+     |      
+     |      If the modes don't match, the pasted image is converted to the mode of
+     |      this image (see the :py:meth:`~PIL.Image.Image.convert` method for
+     |      details).
+     |      
+     |      Instead of an image, the source can be a integer or tuple
+     |      containing pixel values.  The method then fills the region
+     |      with the given color.  When creating RGB images, you can
+     |      also use color strings as supported by the ImageColor module.
+     |      
+     |      If a mask is given, this method updates only the regions
+     |      indicated by the mask.  You can use either "1", "L" or "RGBA"
+     |      images (in the latter case, the alpha band is used as mask).
+     |      Where the mask is 255, the given image is copied as is.  Where
+     |      the mask is 0, the current value is preserved.  Intermediate
+     |      values will mix the two images together, including their alpha
+     |      channels if they have them.
+     |      
+     |      See :py:meth:`~PIL.Image.Image.alpha_composite` if you want to
+     |      combine images with respect to their alpha channels.
+     |      
+     |      :param im: Source image or pixel value (integer or tuple).
+     |      :param box: An optional 4-tuple giving the region to paste into.
+     |         If a 2-tuple is used instead, it's treated as the upper left
+     |         corner.  If omitted or None, the source is pasted into the
+     |         upper left corner.
+     |      
+     |         If an image is given as the second argument and there is no
+     |         third, the box defaults to (0, 0), and the second argument
+     |         is interpreted as a mask image.
+     |      :param mask: An optional mask image.
+     |  
+     |  ppooiinntt(self, lut, mode=None)
+     |      Maps this image through a lookup table or function.
+     |      
+     |      :param lut: A lookup table, containing 256 (or 65536 if
+     |         self.mode=="I" and mode == "L") values per band in the
+     |         image.  A function can be used instead, it should take a
+     |         single argument. The function is called once for each
+     |         possible pixel value, and the resulting table is applied to
+     |         all bands of the image.
+     |      
+     |         It may also be an :py:class:`~PIL.Image.ImagePointHandler`
+     |         object::
+     |      
+     |             class Example(Image.ImagePointHandler):
+     |               def point(self, data):
+     |                 # Return result
+     |      :param mode: Output mode (default is same as input).  In the
+     |         current version, this can only be used if the source image
+     |         has mode "L" or "P", and the output has mode "1" or the
+     |         source image mode is "I" and the output mode is "L".
+     |      :returns: An :py:class:`~PIL.Image.Image` object.
+     |  
+     |  ppuuttaallpphhaa(self, alpha)
+     |      Adds or replaces the alpha layer in this image.  If the image
+     |      does not have an alpha layer, it's converted to "LA" or "RGBA".
+     |      The new layer must be either "L" or "1".
+     |      
+     |      :param alpha: The new alpha layer.  This can either be an "L" or "1"
+     |         image having the same size as this image, or an integer or
+     |         other color value.
+     |  
+     |  ppuuttddaattaa(self, data, scale=1.0, offset=0.0)
+     |      Copies pixel data to this image.  This method copies data from a
+     |      sequence object into the image, starting at the upper left
+     |      corner (0, 0), and continuing until either the image or the
+     |      sequence ends.  The scale and offset values are used to adjust
+     |      the sequence values: **pixel = value*scale + offset**.
+     |      
+     |      :param data: A sequence object.
+     |      :param scale: An optional scale value.  The default is 1.0.
+     |      :param offset: An optional offset value.  The default is 0.0.
+     |  
+     |  ppuuttppaalleettttee(self, data, rawmode='RGB')
+     |      Attaches a palette to this image.  The image must be a "P", "PA", "L"
+     |      or "LA" image.
+     |      
+     |      The palette sequence must contain either 768 integer values, or 1024
+     |      integer values if alpha is included. Each group of values represents
+     |      the red, green, blue (and alpha if included) values for the
+     |      corresponding pixel index. Instead of an integer sequence, you can use
+     |      an 8-bit string.
+     |      
+     |      :param data: A palette sequence (either a list or a string).
+     |      :param rawmode: The raw mode of the palette.
+     |  
+     |  ppuuttppiixxeell(self, xy, value)
+     |      Modifies the pixel at the given position. The color is given as
+     |      a single numerical value for single-band images, and a tuple for
+     |      multi-band images. In addition to this, RGB and RGBA tuples are
+     |      accepted for P images.
+     |      
+     |      Note that this method is relatively slow.  For more extensive changes,
+     |      use :py:meth:`~PIL.Image.Image.paste` or the :py:mod:`~PIL.ImageDraw`
+     |      module instead.
+     |      
+     |      See:
+     |      
+     |      * :py:meth:`~PIL.Image.Image.paste`
+     |      * :py:meth:`~PIL.Image.Image.putdata`
+     |      * :py:mod:`~PIL.ImageDraw`
+     |      
+     |      :param xy: The pixel coordinate, given as (x, y). See
+     |         :ref:`coordinate-system`.
+     |      :param value: The pixel value.
+     |  
+     |  qquuaannttiizzee(self, colors=256, method=None, kmeans=0, palette=None, dither=1)
+     |      Convert the image to 'P' mode with the specified number
+     |      of colors.
+     |      
+     |      :param colors: The desired number of colors, <= 256
+     |      :param method: :data:`MEDIANCUT` (median cut),
+     |                     :data:`MAXCOVERAGE` (maximum coverage),
+     |                     :data:`FASTOCTREE` (fast octree),
+     |                     :data:`LIBIMAGEQUANT` (libimagequant; check support using
+     |                     :py:func:`PIL.features.check_feature`
+     |                     with ``feature="libimagequant"``).
+     |      :param kmeans: Integer
+     |      :param palette: Quantize to the palette of given
+     |                      :py:class:`PIL.Image.Image`.
+     |      :param dither: Dithering method, used when converting from
+     |         mode "RGB" to "P" or from "RGB" or "L" to "1".
+     |         Available methods are :data:`NONE` or :data:`FLOYDSTEINBERG` (default).
+     |         Default: 1 (legacy setting)
+     |      :returns: A new image
+     |  
+     |  rreedduuccee(self, factor, box=None)
+     |      Returns a copy of the image reduced ``factor`` times.
+     |      If the size of the image is not dividable by ``factor``,
+     |      the resulting size will be rounded up.
+     |      
+     |      :param factor: A greater than 0 integer or tuple of two integers
+     |         for width and height separately.
+     |      :param box: An optional 4-tuple of ints providing
+     |         the source image region to be reduced.
+     |         The values must be within ``(0, 0, width, height)`` rectangle.
+     |         If omitted or ``None``, the entire source is used.
+     |  
+     |  rreemmaapp__ppaalleettttee(self, dest_map, source_palette=None)
+     |      Rewrites the image to reorder the palette.
+     |      
+     |      :param dest_map: A list of indexes into the original palette.
+     |         e.g. ``[1,0]`` would swap a two item palette, and ``list(range(256))``
+     |         is the identity transform.
+     |      :param source_palette: Bytes or None.
+     |      :returns:  An :py:class:`~PIL.Image.Image` object.
+     |  
+     |  rreessiizzee(self, size, resample=3, box=None, reducing_gap=None)
+     |      Returns a resized copy of this image.
+     |      
+     |      :param size: The requested size in pixels, as a 2-tuple:
+     |         (width, height).
+     |      :param resample: An optional resampling filter.  This can be
+     |         one of :py:data:`PIL.Image.NEAREST`, :py:data:`PIL.Image.BOX`,
+     |         :py:data:`PIL.Image.BILINEAR`, :py:data:`PIL.Image.HAMMING`,
+     |         :py:data:`PIL.Image.BICUBIC` or :py:data:`PIL.Image.LANCZOS`.
+     |         Default filter is :py:data:`PIL.Image.BICUBIC`.
+     |         If the image has mode "1" or "P", it is
+     |         always set to :py:data:`PIL.Image.NEAREST`.
+     |         See: :ref:`concept-filters`.
+     |      :param box: An optional 4-tuple of floats providing
+     |         the source image region to be scaled.
+     |         The values must be within (0, 0, width, height) rectangle.
+     |         If omitted or None, the entire source is used.
+     |      :param reducing_gap: Apply optimization by resizing the image
+     |         in two steps. First, reducing the image by integer times
+     |         using :py:meth:`~PIL.Image.Image.reduce`.
+     |         Second, resizing using regular resampling. The last step
+     |         changes size no less than by ``reducing_gap`` times.
+     |         ``reducing_gap`` may be None (no first step is performed)
+     |         or should be greater than 1.0. The bigger ``reducing_gap``,
+     |         the closer the result to the fair resampling.
+     |         The smaller ``reducing_gap``, the faster resizing.
+     |         With ``reducing_gap`` greater or equal to 3.0, the result is
+     |         indistinguishable from fair resampling in most cases.
+     |         The default value is None (no optimization).
+     |      :returns: An :py:class:`~PIL.Image.Image` object.
+     |  
+     |  rroottaattee(self, angle, resample=0, expand=0, center=None, translate=None, fillcolor=None)
+     |      Returns a rotated copy of this image.  This method returns a
+     |      copy of this image, rotated the given number of degrees counter
+     |      clockwise around its centre.
+     |      
+     |      :param angle: In degrees counter clockwise.
+     |      :param resample: An optional resampling filter.  This can be
+     |         one of :py:data:`PIL.Image.NEAREST` (use nearest neighbour),
+     |         :py:data:`PIL.Image.BILINEAR` (linear interpolation in a 2x2
+     |         environment), or :py:data:`PIL.Image.BICUBIC`
+     |         (cubic spline interpolation in a 4x4 environment).
+     |         If omitted, or if the image has mode "1" or "P", it is
+     |         set to :py:data:`PIL.Image.NEAREST`. See :ref:`concept-filters`.
+     |      :param expand: Optional expansion flag.  If true, expands the output
+     |         image to make it large enough to hold the entire rotated image.
+     |         If false or omitted, make the output image the same size as the
+     |         input image.  Note that the expand flag assumes rotation around
+     |         the center and no translation.
+     |      :param center: Optional center of rotation (a 2-tuple).  Origin is
+     |         the upper left corner.  Default is the center of the image.
+     |      :param translate: An optional post-rotate translation (a 2-tuple).
+     |      :param fillcolor: An optional color for area outside the rotated image.
+     |      :returns: An :py:class:`~PIL.Image.Image` object.
+     |  
+     |  ssaavvee(self, fp, format=None, **params)
+     |      Saves this image under the given filename.  If no format is
+     |      specified, the format to use is determined from the filename
+     |      extension, if possible.
+     |      
+     |      Keyword options can be used to provide additional instructions
+     |      to the writer. If a writer doesn't recognise an option, it is
+     |      silently ignored. The available options are described in the
+     |      :doc:`image format documentation
+     |      <../handbook/image-file-formats>` for each writer.
+     |      
+     |      You can use a file object instead of a filename. In this case,
+     |      you must always specify the format. The file object must
+     |      implement the ``seek``, ``tell``, and ``write``
+     |      methods, and be opened in binary mode.
+     |      
+     |      :param fp: A filename (string), pathlib.Path object or file object.
+     |      :param format: Optional format override.  If omitted, the
+     |         format to use is determined from the filename extension.
+     |         If a file object was used instead of a filename, this
+     |         parameter should always be used.
+     |      :param params: Extra parameters to the image writer.
+     |      :returns: None
+     |      :exception ValueError: If the output format could not be determined
+     |         from the file name.  Use the format option to solve this.
+     |      :exception OSError: If the file could not be written.  The file
+     |         may have been created, and may contain partial data.
+     |  
+     |  sseeeekk(self, frame)
+     |      Seeks to the given frame in this sequence file. If you seek
+     |      beyond the end of the sequence, the method raises an
+     |      ``EOFError`` exception. When a sequence file is opened, the
+     |      library automatically seeks to frame 0.
+     |      
+     |      See :py:meth:`~PIL.Image.Image.tell`.
+     |      
+     |      If defined, :attr:`~PIL.Image.Image.n_frames` refers to the
+     |      number of available frames.
+     |      
+     |      :param frame: Frame number, starting at 0.
+     |      :exception EOFError: If the call attempts to seek beyond the end
+     |          of the sequence.
+     |  
+     |  sshhooww(self, title=None, command=None)
+     |      Displays this image. This method is mainly intended for debugging purposes.
+     |      
+     |      This method calls :py:func:`PIL.ImageShow.show` internally. You can use
+     |      :py:func:`PIL.ImageShow.register` to override its default behaviour.
+     |      
+     |      The image is first saved to a temporary file. By default, it will be in
+     |      PNG format.
+     |      
+     |      On Unix, the image is then opened using the **display**, **eog** or
+     |      **xv** utility, depending on which one can be found.
+     |      
+     |      On macOS, the image is opened with the native Preview application.
+     |      
+     |      On Windows, the image is opened with the standard PNG display utility.
+     |      
+     |      :param title: Optional title to use for the image window, where possible.
+     |  
+     |  sspplliitt(self)
+     |      Split this image into individual bands. This method returns a
+     |      tuple of individual image bands from an image. For example,
+     |      splitting an "RGB" image creates three new images each
+     |      containing a copy of one of the original bands (red, green,
+     |      blue).
+     |      
+     |      If you need only one band, :py:meth:`~PIL.Image.Image.getchannel`
+     |      method can be more convenient and faster.
+     |      
+     |      :returns: A tuple containing bands.
+     |  
+     |  tteellll(self)
+     |      Returns the current frame number. See :py:meth:`~PIL.Image.Image.seek`.
+     |      
+     |      If defined, :attr:`~PIL.Image.Image.n_frames` refers to the
+     |      number of available frames.
+     |      
+     |      :returns: Frame number, starting with 0.
+     |  
+     |  tthhuummbbnnaaiill(self, size, resample=3, reducing_gap=2.0)
+     |      Make this image into a thumbnail.  This method modifies the
+     |      image to contain a thumbnail version of itself, no larger than
+     |      the given size.  This method calculates an appropriate thumbnail
+     |      size to preserve the aspect of the image, calls the
+     |      :py:meth:`~PIL.Image.Image.draft` method to configure the file reader
+     |      (where applicable), and finally resizes the image.
+     |      
+     |      Note that this function modifies the :py:class:`~PIL.Image.Image`
+     |      object in place.  If you need to use the full resolution image as well,
+     |      apply this method to a :py:meth:`~PIL.Image.Image.copy` of the original
+     |      image.
+     |      
+     |      :param size: Requested size.
+     |      :param resample: Optional resampling filter.  This can be one
+     |         of :py:data:`PIL.Image.NEAREST`, :py:data:`PIL.Image.BOX`,
+     |         :py:data:`PIL.Image.BILINEAR`, :py:data:`PIL.Image.HAMMING`,
+     |         :py:data:`PIL.Image.BICUBIC` or :py:data:`PIL.Image.LANCZOS`.
+     |         If omitted, it defaults to :py:data:`PIL.Image.BICUBIC`.
+     |         (was :py:data:`PIL.Image.NEAREST` prior to version 2.5.0).
+     |         See: :ref:`concept-filters`.
+     |      :param reducing_gap: Apply optimization by resizing the image
+     |         in two steps. First, reducing the image by integer times
+     |         using :py:meth:`~PIL.Image.Image.reduce` or
+     |         :py:meth:`~PIL.Image.Image.draft` for JPEG images.
+     |         Second, resizing using regular resampling. The last step
+     |         changes size no less than by ``reducing_gap`` times.
+     |         ``reducing_gap`` may be None (no first step is performed)
+     |         or should be greater than 1.0. The bigger ``reducing_gap``,
+     |         the closer the result to the fair resampling.
+     |         The smaller ``reducing_gap``, the faster resizing.
+     |         With ``reducing_gap`` greater or equal to 3.0, the result is
+     |         indistinguishable from fair resampling in most cases.
+     |         The default value is 2.0 (very close to fair resampling
+     |         while still being faster in many cases).
+     |      :returns: None
+     |  
+     |  ttoobbiittmmaapp(self, name='image')
+     |      Returns the image converted to an X11 bitmap.
+     |      
+     |      .. note:: This method only works for mode "1" images.
+     |      
+     |      :param name: The name prefix to use for the bitmap variables.
+     |      :returns: A string containing an X11 bitmap.
+     |      :raises ValueError: If the mode is not "1"
+     |  
+     |  ttoobbyytteess(self, encoder_name='raw', *args)
+     |      Return image as a bytes object.
+     |      
+     |      .. warning::
+     |      
+     |          This method returns the raw image data from the internal
+     |          storage.  For compressed image data (e.g. PNG, JPEG) use
+     |          :meth:`~.save`, with a BytesIO parameter for in-memory
+     |          data.
+     |      
+     |      :param encoder_name: What encoder to use.  The default is to
+     |                           use the standard "raw" encoder.
+     |      :param args: Extra arguments to the encoder.
+     |      :returns: A :py:class:`bytes` object.
+     |  
+     |  ttooqqiimmaaggee(self)
+     |      Returns a QImage copy of this image
+     |  
+     |  ttooqqppiixxmmaapp(self)
+     |      Returns a QPixmap copy of this image
+     |  
+     |  ttrraannssffoorrmm(self, size, method, data=None, resample=0, fill=1, fillcolor=None)
+     |      Transforms this image.  This method creates a new image with the
+     |      given size, and the same mode as the original, and copies data
+     |      to the new image using the given transform.
+     |      
+     |      :param size: The output size.
+     |      :param method: The transformation method.  This is one of
+     |        :py:data:`PIL.Image.EXTENT` (cut out a rectangular subregion),
+     |        :py:data:`PIL.Image.AFFINE` (affine transform),
+     |        :py:data:`PIL.Image.PERSPECTIVE` (perspective transform),
+     |        :py:data:`PIL.Image.QUAD` (map a quadrilateral to a rectangle), or
+     |        :py:data:`PIL.Image.MESH` (map a number of source quadrilaterals
+     |        in one operation).
+     |      
+     |        It may also be an :py:class:`~PIL.Image.ImageTransformHandler`
+     |        object::
+     |      
+     |          class Example(Image.ImageTransformHandler):
+     |              def transform(self, size, data, resample, fill=1):
+     |                  # Return result
+     |      
+     |        It may also be an object with a ``method.getdata`` method
+     |        that returns a tuple supplying new ``method`` and ``data`` values::
+     |      
+     |          class Example:
+     |              def getdata(self):
+     |                  method = Image.EXTENT
+     |                  data = (0, 0, 100, 100)
+     |                  return method, data
+     |      :param data: Extra data to the transformation method.
+     |      :param resample: Optional resampling filter.  It can be one of
+     |         :py:data:`PIL.Image.NEAREST` (use nearest neighbour),
+     |         :py:data:`PIL.Image.BILINEAR` (linear interpolation in a 2x2
+     |         environment), or :py:data:`PIL.Image.BICUBIC` (cubic spline
+     |         interpolation in a 4x4 environment). If omitted, or if the image
+     |         has mode "1" or "P", it is set to :py:data:`PIL.Image.NEAREST`.
+     |         See: :ref:`concept-filters`.
+     |      :param fill: If ``method`` is an
+     |        :py:class:`~PIL.Image.ImageTransformHandler` object, this is one of
+     |        the arguments passed to it. Otherwise, it is unused.
+     |      :param fillcolor: Optional fill color for the area outside the
+     |         transform in the output image.
+     |      :returns: An :py:class:`~PIL.Image.Image` object.
+     |  
+     |  ttrraannssppoossee(self, method)
+     |      Transpose image (flip or rotate in 90 degree steps)
+     |      
+     |      :param method: One of :py:data:`PIL.Image.FLIP_LEFT_RIGHT`,
+     |        :py:data:`PIL.Image.FLIP_TOP_BOTTOM`, :py:data:`PIL.Image.ROTATE_90`,
+     |        :py:data:`PIL.Image.ROTATE_180`, :py:data:`PIL.Image.ROTATE_270`,
+     |        :py:data:`PIL.Image.TRANSPOSE` or :py:data:`PIL.Image.TRANSVERSE`.
+     |      :returns: Returns a flipped or rotated copy of this image.
+     |  
+     |  vveerriiffyy(self)
+     |      Verifies the contents of a file. For data read from a file, this
+     |      method attempts to determine if the file is broken, without
+     |      actually decoding the image data.  If this method finds any
+     |      problems, it raises suitable exceptions.  If you need to load
+     |      the image after using this method, you must reopen the image
+     |      file.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Readonly properties defined here:
+     |  
+     |  ____aarrrraayy__iinntteerrffaaccee____
+     |  
+     |  hheeiigghhtt
+     |  
+     |  ssiizzee
+     |  
+     |  wwiiddtthh
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  ____ddiicctt____
+     |      dictionary for instance variables (if defined)
+     |  
+     |  ____wweeaakkrreeff____
+     |      list of weak references to the object (if defined)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  ____hhaasshh____ = None
+     |  
+     |  ffoorrmmaatt = None
+     |  
+     |  ffoorrmmaatt__ddeessccrriippttiioonn = None
+    
+    class IImmaaggeePPooiinnttHHaannddlleerr(builtins.object)
+     |  Used as a mixin by point transforms
+     |  (for use with :py:meth:`~PIL.Image.Image.point`)
+     |  
+     |  Data descriptors defined here:
+     |  
+     |  ____ddiicctt____
+     |      dictionary for instance variables (if defined)
+     |  
+     |  ____wweeaakkrreeff____
+     |      list of weak references to the object (if defined)
+    
+    class IImmaaggeeTTrraannssffoorrmmHHaannddlleerr(builtins.object)
+     |  Used as a mixin by geometry transforms
+     |  (for use with :py:meth:`~PIL.Image.Image.transform`)
+     |  
+     |  Data descriptors defined here:
+     |  
+     |  ____ddiicctt____
+     |      dictionary for instance variables (if defined)
+     |  
+     |  ____wweeaakkrreeff____
+     |      list of weak references to the object (if defined)
+
+FFUUNNCCTTIIOONNSS
+    ____ggeettaattttrr____(name)
+    
+    aallpphhaa__ccoommppoossiittee(im1, im2)
+        Alpha composite im2 over im1.
+        
+        :param im1: The first image. Must have mode RGBA.
+        :param im2: The second image.  Must have mode RGBA, and the same size as
+           the first image.
+        :returns: An :py:class:`~PIL.Image.Image` object.
+    
+    bblleenndd(im1, im2, alpha)
+        Creates a new image by interpolating between two input images, using
+        a constant alpha.::
+        
+            out = image1 * (1.0 - alpha) + image2 * alpha
+        
+        :param im1: The first image.
+        :param im2: The second image.  Must have the same mode and size as
+           the first image.
+        :param alpha: The interpolation alpha factor.  If alpha is 0.0, a
+           copy of the first image is returned. If alpha is 1.0, a copy of
+           the second image is returned. There are no restrictions on the
+           alpha value. If necessary, the result is clipped to fit into
+           the allowed output range.
+        :returns: An :py:class:`~PIL.Image.Image` object.
+    
+    ccooeerrccee__ee(value)
+    
+    ccoommppoossiittee(image1, image2, mask)
+        Create composite image by blending images using a transparency mask.
+        
+        :param image1: The first image.
+        :param image2: The second image.  Must have the same mode and
+           size as the first image.
+        :param mask: A mask image.  This image can have mode
+           "1", "L", or "RGBA", and must have the same size as the
+           other two images.
+    
+    eeffffeecctt__mmaannddeellbbrroott(size, extent, quality)
+        Generate a Mandelbrot set covering the given extent.
+        
+        :param size: The requested size in pixels, as a 2-tuple:
+           (width, height).
+        :param extent: The extent to cover, as a 4-tuple:
+           (x0, y0, x1, y2).
+        :param quality: Quality.
+    
+    eeffffeecctt__nnooiissee(size, sigma)
+        Generate Gaussian noise centered around 128.
+        
+        :param size: The requested size in pixels, as a 2-tuple:
+           (width, height).
+        :param sigma: Standard deviation of noise.
+    
+    eevvaall(image, *args)
+        Applies the function (which should take one argument) to each pixel
+        in the given image. If the image has more than one band, the same
+        function is applied to each band. Note that the function is
+        evaluated once for each possible pixel value, so you cannot use
+        random components or other generators.
+        
+        :param image: The input image.
+        :param function: A function object, taking one integer argument.
+        :returns: An :py:class:`~PIL.Image.Image` object.
+    
+    ffrroommaarrrraayy(obj, mode=None)
+        Creates an image memory from an object exporting the array interface
+        (using the buffer protocol).
+        
+        If ``obj`` is not contiguous, then the ``tobytes`` method is called
+        and :py:func:`~PIL.Image.frombuffer` is used.
+        
+        If you have an image in NumPy::
+        
+          from PIL import Image
+          import numpy as np
+          im = Image.open('hopper.jpg')
+          a = np.asarray(im)
+        
+        Then this can be used to convert it to a Pillow image::
+        
+          im = Image.fromarray(a)
+        
+        :param obj: Object with array interface
+        :param mode: Mode to use (will be determined from type if None)
+          See: :ref:`concept-modes`.
+        :returns: An image object.
+        
+        .. versionadded:: 1.1.6
+    
+    ffrroommbbuuffffeerr(mode, size, data, decoder_name='raw', *args)
+        Creates an image memory referencing pixel data in a byte buffer.
+        
+        This function is similar to :py:func:`~PIL.Image.frombytes`, but uses data
+        in the byte buffer, where possible.  This means that changes to the
+        original buffer object are reflected in this image).  Not all modes can
+        share memory; supported modes include "L", "RGBX", "RGBA", and "CMYK".
+        
+        Note that this function decodes pixel data only, not entire images.
+        If you have an entire image file in a string, wrap it in a
+        :py:class:`~io.BytesIO` object, and use :py:func:`~PIL.Image.open` to load it.
+        
+        In the current version, the default parameters used for the "raw" decoder
+        differs from that used for :py:func:`~PIL.Image.frombytes`.  This is a
+        bug, and will probably be fixed in a future release.  The current release
+        issues a warning if you do this; to disable the warning, you should provide
+        the full set of parameters.  See below for details.
+        
+        :param mode: The image mode. See: :ref:`concept-modes`.
+        :param size: The image size.
+        :param data: A bytes or other buffer object containing raw
+            data for the given mode.
+        :param decoder_name: What decoder to use.
+        :param args: Additional parameters for the given decoder.  For the
+            default encoder ("raw"), it's recommended that you provide the
+            full set of parameters::
+        
+                frombuffer(mode, size, data, "raw", mode, 0, 1)
+        
+        :returns: An :py:class:`~PIL.Image.Image` object.
+        
+        .. versionadded:: 1.1.4
+    
+    ffrroommbbyytteess(mode, size, data, decoder_name='raw', *args)
+        Creates a copy of an image memory from pixel data in a buffer.
+        
+        In its simplest form, this function takes three arguments
+        (mode, size, and unpacked pixel data).
+        
+        You can also use any pixel decoder supported by PIL.  For more
+        information on available decoders, see the section
+        :ref:`Writing Your Own File Decoder <file-decoders>`.
+        
+        Note that this function decodes pixel data only, not entire images.
+        If you have an entire image in a string, wrap it in a
+        :py:class:`~io.BytesIO` object, and use :py:func:`~PIL.Image.open` to load
+        it.
+        
+        :param mode: The image mode. See: :ref:`concept-modes`.
+        :param size: The image size.
+        :param data: A byte buffer containing raw data for the given mode.
+        :param decoder_name: What decoder to use.
+        :param args: Additional parameters for the given decoder.
+        :returns: An :py:class:`~PIL.Image.Image` object.
+    
+    ffrroommqqiimmaaggee(im)
+        Creates an image instance from a QImage image
+    
+    ffrroommqqppiixxmmaapp(im)
+        Creates an image instance from a QPixmap image
+    
+    ggeettmmooddeebbaannddnnaammeess(mode)
+        Gets a list of individual band names.  Given a mode, this function returns
+        a tuple containing the names of individual bands (use
+        :py:method:`~PIL.Image.getmodetype` to get the mode used to store each
+        individual band.
+        
+        :param mode: Input mode.
+        :returns: A tuple containing band names.  The length of the tuple
+            gives the number of bands in an image of the given mode.
+        :exception KeyError: If the input mode was not a standard mode.
+    
+    ggeettmmooddeebbaannddss(mode)
+        Gets the number of individual bands for this mode.
+        
+        :param mode: Input mode.
+        :returns: The number of bands in this mode.
+        :exception KeyError: If the input mode was not a standard mode.
+    
+    ggeettmmooddeebbaassee(mode)
+        Gets the "base" mode for given mode.  This function returns "L" for
+        images that contain grayscale data, and "RGB" for images that
+        contain color data.
+        
+        :param mode: Input mode.
+        :returns: "L" or "RGB".
+        :exception KeyError: If the input mode was not a standard mode.
+    
+    ggeettmmooddeettyyppee(mode)
+        Gets the storage type mode.  Given a mode, this function returns a
+        single-layer mode suitable for storing individual bands.
+        
+        :param mode: Input mode.
+        :returns: "L", "I", or "F".
+        :exception KeyError: If the input mode was not a standard mode.
+    
+    iinniitt()
+        Explicitly initializes the Python Imaging Library. This function
+        loads all available file format drivers.
+    
+    iissIImmaaggeeTTyyppee(t)
+        Checks if an object is an image object.
+        
+        .. warning::
+        
+           This function is for internal use only.
+        
+        :param t: object to check if it's an image
+        :returns: True if the object is an image
+    
+    lliinneeaarr__ggrraaddiieenntt(mode)
+        Generate 256x256 linear gradient from black to white, top to bottom.
+        
+        :param mode: Input mode.
+    
+    mmeerrggee(mode, bands)
+        Merge a set of single band images into a new multiband image.
+        
+        :param mode: The mode to use for the output image. See:
+            :ref:`concept-modes`.
+        :param bands: A sequence containing one single-band image for
+            each band in the output image.  All bands must have the
+            same size.
+        :returns: An :py:class:`~PIL.Image.Image` object.
+    
+    nneeww(mode, size, color=0)
+        Creates a new image with the given mode and size.
+        
+        :param mode: The mode to use for the new image. See:
+           :ref:`concept-modes`.
+        :param size: A 2-tuple, containing (width, height) in pixels.
+        :param color: What color to use for the image.  Default is black.
+           If given, this should be a single integer or floating point value
+           for single-band modes, and a tuple for multi-band modes (one value
+           per band).  When creating RGB images, you can also use color
+           strings as supported by the ImageColor module.  If the color is
+           None, the image is not initialised.
+        :returns: An :py:class:`~PIL.Image.Image` object.
+    
+    ooppeenn(fp, mode='r', formats=None)
+        Opens and identifies the given image file.
+        
+        This is a lazy operation; this function identifies the file, but
+        the file remains open and the actual image data is not read from
+        the file until you try to process the data (or call the
+        :py:meth:`~PIL.Image.Image.load` method).  See
+        :py:func:`~PIL.Image.new`. See :ref:`file-handling`.
+        
+        :param fp: A filename (string), pathlib.Path object or a file object.
+           The file object must implement ``file.read``,
+           ``file.seek``, and ``file.tell`` methods,
+           and be opened in binary mode.
+        :param mode: The mode.  If given, this argument must be "r".
+        :param formats: A list or tuple of formats to attempt to load the file in.
+           This can be used to restrict the set of formats checked.
+           Pass ``None`` to try all supported formats. You can print the set of
+           available formats by running ``python -m PIL`` or using
+           the :py:func:`PIL.features.pilinfo` function.
+        :returns: An :py:class:`~PIL.Image.Image` object.
+        :exception FileNotFoundError: If the file cannot be found.
+        :exception PIL.UnidentifiedImageError: If the image cannot be opened and
+           identified.
+        :exception ValueError: If the ``mode`` is not "r", or if a ``StringIO``
+           instance is used for ``fp``.
+        :exception TypeError: If ``formats`` is not ``None``, a list or a tuple.
+    
+    pprreeiinniitt()
+        Explicitly load standard file format drivers.
+    
+    rraaddiiaall__ggrraaddiieenntt(mode)
+        Generate 256x256 radial gradient from black to white, centre to edge.
+        
+        :param mode: Input mode.
+    
+    rreeggiisstteerr__ddeeccooddeerr(name, decoder)
+        Registers an image decoder.  This function should not be
+        used in application code.
+        
+        :param name: The name of the decoder
+        :param decoder: A callable(mode, args) that returns an
+                        ImageFile.PyDecoder object
+        
+        .. versionadded:: 4.1.0
+    
+    rreeggiisstteerr__eennccooddeerr(name, encoder)
+        Registers an image encoder.  This function should not be
+        used in application code.
+        
+        :param name: The name of the encoder
+        :param encoder: A callable(mode, args) that returns an
+                        ImageFile.PyEncoder object
+        
+        .. versionadded:: 4.1.0
+    
+    rreeggiisstteerr__eexxtteennssiioonn(id, extension)
+        Registers an image extension.  This function should not be
+        used in application code.
+        
+        :param id: An image format identifier.
+        :param extension: An extension used for this format.
+    
+    rreeggiisstteerr__eexxtteennssiioonnss(id, extensions)
+        Registers image extensions.  This function should not be
+        used in application code.
+        
+        :param id: An image format identifier.
+        :param extensions: A list of extensions used for this format.
+    
+    rreeggiisstteerr__mmiimmee(id, mimetype)
+        Registers an image MIME type.  This function should not be used
+        in application code.
+        
+        :param id: An image format identifier.
+        :param mimetype: The image MIME type for this format.
+    
+    rreeggiisstteerr__ooppeenn(id, factory, accept=None)
+        Register an image file plugin.  This function should not be used
+        in application code.
+        
+        :param id: An image format identifier.
+        :param factory: An image file factory method.
+        :param accept: An optional function that can be used to quickly
+           reject images having another format.
+    
+    rreeggiisstteerr__ssaavvee(id, driver)
+        Registers an image save function.  This function should not be
+        used in application code.
+        
+        :param id: An image format identifier.
+        :param driver: A function to save images in this format.
+    
+    rreeggiisstteerr__ssaavvee__aallll(id, driver)
+        Registers an image function to save all the frames
+        of a multiframe format.  This function should not be
+        used in application code.
+        
+        :param id: An image format identifier.
+        :param driver: A function to save images in this format.
+    
+    rreeggiisstteerreedd__eexxtteennssiioonnss()
+        Returns a dictionary containing all file extensions belonging
+        to registered plugins
+
+DDAATTAA
+    AADDAAPPTTIIVVEE = 1
+    AAFFFFIINNEE = 0
+    AANNTTIIAALLIIAASS = 1
+    BBIICCUUBBIICC = 3
+    BBIILLIINNEEAARR = 2
+    BBOOXX = 4
+    CCOONNTTAAIINNEERR = 2
+    CCUUBBIICC = 3
+    DDEECCOODDEERRSS = {}
+    DDEEFFAAUULLTT__SSTTRRAATTEEGGYY = 0
+    EENNCCOODDEERRSS = {}
+    EEXXTTEENNSSIIOONN = {}
+    EEXXTTEENNTT = 1
+    FFAASSTTOOCCTTRREEEE = 2
+    FFIILLTTEERREEDD = 1
+    FFIIXXEEDD = 4
+    FFLLIIPP__LLEEFFTT__RRIIGGHHTT = 0
+    FFLLIIPP__TTOOPP__BBOOTTTTOOMM = 1
+    FFLLOOYYDDSSTTEEIINNBBEERRGG = 3
+    HHAAMMMMIINNGG = 5
+    HHUUFFFFMMAANN__OONNLLYY = 2
+    IIDD = []
+    LLAANNCCZZOOSS = 1
+    LLIIBBIIMMAAGGEEQQUUAANNTT = 3
+    LLIINNEEAARR = 2
+    MMAAXXCCOOVVEERRAAGGEE = 1
+    MMAAXX__IIMMAAGGEE__PPIIXXEELLSS = 89478485
+    MMEEDDIIAANNCCUUTT = 0
+    MMEESSHH = 4
+    MMIIMMEE = {}
+    MMOODDEESS = ['1', 'CMYK', 'F', 'HSV', 'I', 'L', 'LAB', 'P', 'RGB', 'RGBA',...
+    NNEEAARREESSTT = 0
+    NNOONNEE = 0
+    NNOORRMMAALL = 0
+    OOPPEENN = {}
+    OORRDDEERREEDD = 1
+    PPEERRSSPPEECCTTIIVVEE = 2
+    QQUUAADD = 3
+    RRAASSTTEERRIIZZEE = 2
+    RRLLEE = 3
+    RROOTTAATTEE__118800 = 3
+    RROOTTAATTEE__227700 = 4
+    RROOTTAATTEE__9900 = 2
+    SSAAVVEE = {}
+    SSAAVVEE__AALLLL = {}
+    SSEEQQUUEENNCCEE = 1
+    TTRRAANNSSPPOOSSEE = 5
+    TTRRAANNSSVVEERRSSEE = 6
+    UUSSEE__CCFFFFII__AACCCCEESSSS = False
+    WWEEBB = 0
+    ccffffii = None
+    llooggggeerr = <Logger PIL.Image (WARNING)>
+
+VVEERRSSIIOONN
+    8.1.0
+
+FFIILLEE
+    /home/nurhidayat/develop/python/venv/lib/python3.8/site-packages/PIL/Image.py
+
