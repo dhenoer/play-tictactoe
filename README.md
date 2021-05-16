@@ -1,4 +1,4 @@
-# PLAY TIC-TAC-TOE - GAME
+# Play-TicTacToe - Game
 
 
 ![Play-TicTacToe ScreenShoot](screenshot-play-tictactoe.png)
@@ -33,6 +33,8 @@ Berikut adalah modul-modul yang diimport oleh program:
     import random
     import PIL.Image, PIL.ImageTk, PIL.ImageDraw, PIL.ImageFont
 
+
+Class Game berisi Algoritma Tic-Tic-Toe dengan metode minimax yang diadaptasi dari sourcecode divyesh072019
 
 Silakan download /pull untuk dipelajari atau dikembangkan
 
