@@ -17,6 +17,11 @@ Aplikasi Python ini merupakan permainan Tic-Tac-Toe yang sangat popular. Pemain 
 
 [![Video di Youtube](https://img.youtube.com/vi/g6DOW_CXc4c/0.jpg)](https://www.youtube.com/watch?v=g6DOW_CXc4c)
 
+Jika link di atas tidak berfungsi, silakan copy paste
+
+    https://www.youtube.com/watch?v=g6DOW_CXc4c
+
+
 ## Algoritma
 
 Game dibuat dengan bahasa pemrograman Python3 berbasis GUI dengan TkInter dan menerapkan modul-modul OpenCV, mediapipe untuk mendapatkan landmark jari-jari tangan, sehingga dapat dianalisa kotak yang mana yang ditunjuk oleh pemain.
